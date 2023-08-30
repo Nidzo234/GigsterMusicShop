@@ -14,6 +14,7 @@ class ApplicationUser(models.Model):
 
 
 class Product(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     product_name = models.CharField(max_length=255)
     product_description = models.CharField(max_length=255)
     product_category = models.CharField(max_length=255)
