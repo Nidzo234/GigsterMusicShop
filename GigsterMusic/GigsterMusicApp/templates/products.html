@@ -59,12 +59,12 @@
 
     <div class="row text-center align-center">
     {% for product in products%}
-        <div class="card col-3 m-3">
+        <div class="card col-3 m-1">
             <img src="/data/{{product.product_Image}}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{product.product_name}}</h5>
                 <p class="card-text">{{product.product_price}}$</p>
-                <a href="#" class="btn btn-success">DETAILS</a>
+                <a href="{% url 'productDetails' product.id %}" class="btn btn-success">DETAILS</a>
             </div>
         </div>
 

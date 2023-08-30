@@ -25,16 +25,24 @@ class OrderItemAdmin(admin.ModelAdmin):
 admin.site.register(OrderItem, OrderItemAdmin)
 
 
-class ProductInShippingCartAdmin(admin.StackedInline):
-    model = ProductInShippingCart
-    extra = 0
+# class ProductInShippingCartAdmin(admin.StackedInline):
+#     model = ProductInShippingCart
+#     extra = 0
 
 
-class ShippingCartAdmin(admin.ModelAdmin):
-    inlines = [ProductInShippingCartAdmin, ]
+# class ShippingCartAdmin(admin.ModelAdmin):
+#     inlines = [ProductInShippingCartAdmin, ]
 
 
-admin.site.register(ShippingCart, ShippingCartAdmin)
+# admin.site.register(ShippingCart, ShippingCartAdmin)
+
+class ProductInShippingCartAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(ProductInShippingCart, ProductInShippingCartAdmin)
+
+
 
 
 class OrderItemInOrderAdmin(admin.StackedInline):

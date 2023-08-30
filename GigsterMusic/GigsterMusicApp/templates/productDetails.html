@@ -43,38 +43,14 @@
 </nav>
 
 <div class="container">
-    <h1>NASLOV</h1>
-    <div id="carouselExampleIndicators" class="carousel slide">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{% static 't3.jpg' %}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 't2.png' %}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 't3.jpg' %}" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
+    <h1>{{product.product_name}}</h1>
+    <h1>{{product.product_description}}</h1>
+    <p>{{product.product_category}}</p>
+    <img src="/data/{{product.product_Image}}">
+    <p>{{product.product_price}}</p>
+
+
+    <a class="btn btn-success" href="{%url 'addProduct' product.id%}">Add to cart</a>
 
 
     <div class="row mt-5 align-items-center">
@@ -124,7 +100,6 @@
         </div>
 
     </div>
-
 </div>
 
 <div class="bg-dark" style="height: 200px; position: relative">

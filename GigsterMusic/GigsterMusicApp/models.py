@@ -24,16 +24,16 @@ class Product(models.Model):
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(default=1)
 
 
-class ShippingCart(models.Model):
-    user = models.ForeignKey(ApplicationUser, on_delete=models.CASCADE)
+# class ShippingCart(models.Model):
+#   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class ProductInShippingCart(models.Model):
     product = models.ForeignKey(OrderItem, on_delete=models.CASCADE)
-    ShippingCart = models.ForeignKey(ShippingCart, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
 
 class Order(models.Model):

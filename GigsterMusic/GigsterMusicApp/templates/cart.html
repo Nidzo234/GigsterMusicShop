@@ -53,14 +53,11 @@
     </div>
 
 
-    <div class="row">
-        <div class="col-9 bg-dark">
-            <h1>a</h1>
-        </div>
-        <div class="col-3 bg-dark">
-            <h1>a</h1>
-        </div>
-    </div>
+    {% for p in pis%}
+        <p>{{p.product.product.product_name}}</p>
+        <div style="height: 100px; width: 100px; background-color: red"></div>
+
+    {% endfor %}
 
 
 
