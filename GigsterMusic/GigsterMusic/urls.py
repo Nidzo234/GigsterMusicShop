@@ -23,10 +23,16 @@ from GigsterMusicApp.views import *
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('index/', index),
-                  path('products/', products),
+                  path('', index),
+                  path('index/', index, name="index"),
+                  path('products/', products, name="products"),
                   path('cart/', cart, name="addToCart"),
                   path('productDetails/<int:id>', productDetails, name="productDetails"),
                   path('addProduct/<int:id>', addProduct, name="addProduct"),
                   path('addNewProduct/', addNewProduct),
+                  path('login_user', login_user, name="login"),
+                  path('logout_user', logout_user, name='logout'),
+                  path('register_user', register_user, name='register_user'),
+                  path('orderInformations', orderInformations, name='orderInformations'),
+                  path('orderConfirm', orderConfirm, name='orderConfirm'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

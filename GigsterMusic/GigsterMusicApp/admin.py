@@ -4,12 +4,6 @@ from .models import *
 
 # Register your models here.
 
-class ApplicationUserAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(ApplicationUser, ApplicationUserAdmin)
-
 
 class ProductAdmin(admin.ModelAdmin):
     pass
@@ -43,8 +37,6 @@ class ProductInShippingCartAdmin(admin.ModelAdmin):
 admin.site.register(ProductInShippingCart, ProductInShippingCartAdmin)
 
 
-
-
 class OrderItemInOrderAdmin(admin.StackedInline):
     model = OrderItemInOrder
     extra = 0
@@ -55,3 +47,38 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Order, OrderAdmin)
+
+
+class RecommendedAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Recommended, RecommendedAdmin)
+
+
+class BestSellingAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(BestSelling, BestSellingAdmin)
+
+
+class FeaturedItemsAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(FeaturedItems, FeaturedItemsAdmin)
+
+
+class OrderInformationAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(OrderInformation, OrderInformationAdmin)
+
+
+class OrderInformationForOrderAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(OrderInformationForOrder, OrderInformationForOrderAdmin)

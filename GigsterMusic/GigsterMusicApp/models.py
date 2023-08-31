@@ -4,14 +4,6 @@ from django.db import models
 
 # Create your models here.
 
-class ApplicationUser(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    phone_number = models.CharField(max_length=255)
-
 
 class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -37,9 +29,41 @@ class ProductInShippingCart(models.Model):
 
 
 class Order(models.Model):
-    user = models.ForeignKey(ApplicationUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class OrderItemInOrder(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     OrderItem = models.ForeignKey(OrderItem, on_delete=models.CASCADE)
+
+
+class Recommended(models.Model):
+    item = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+
+
+class BestSelling(models.Model):
+    item = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+
+
+class FeaturedItems(models.Model):
+    item = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+
+
+class OrderInformation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField()
+    name = models.CharField(max_length=255)
+    surname = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    note = models.CharField(max_length=255)
+    address1 = models.CharField(max_length=255)
+    address2 = models.CharField(max_length=255, blank=True)
+    phoneNumber = models.CharField(max_length=255)
+    postalCode = models.CharField(max_length=255)
+
+
+class OrderInformationForOrder(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    OrderInformation = models.ForeignKey(OrderInformation, on_delete=models.CASCADE)
