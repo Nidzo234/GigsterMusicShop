@@ -1,8 +1,8 @@
-<div class="card col m-3">
-    <img src="/data/{{p.item.product_Image}}" class="card-img-top" alt="...">
+<div class="col m-3 text-center">
+    <img src="/data/{{p.item.product_Image}}" class="card-img-top" style="width: 18rem; height: 400px; width: auto" alt="...">
     <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">1990$</p>
+        <h5 class="card-title">{{p.item.product_name}}</h5>
+        <p class="card-text">{{p.item.product_price}}$</p>
         <a href="{% url 'productDetails' p.item.id %}" class="btn btn-success">DETAILS</a>
     </div>
 </div>

@@ -11,11 +11,13 @@
 {% include 'navbar.html' %}
 
 <div class="container">
-    <h1>{{product.product_name}}</h1>
-    <h1>{{product.product_description}}</h1>
+    <h1 class="mt-5">{{product.product_name}}</h1>
     <p>{{product.product_category}}</p>
-    <img src="/data/{{product.product_Image}}">
-    <p>{{product.product_price}}</p>
+    <img src="/data/{{product.product_Image}}" style="height: 600px; width: auto">
+    <h5>{{product.product_price}}$</h5>
+
+
+    <p class="col-lg-5">{{product.product_description}}</p>
 
 
     <a class="btn btn-success" href="{%url 'addProduct' product.id%}">Add to cart</a>

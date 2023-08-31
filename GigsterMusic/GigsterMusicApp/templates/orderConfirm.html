@@ -9,9 +9,11 @@
 <body>
 {% load static %}
 {% include 'navbar.html' %}
-<div class="container text-center">
-    <h1>Your order is preparing!</h1>
-    <h1>Thanks!</h1>
+<div class="container text-center" style="height: 590px;">
+    <h1 class="mt-5">Thank you for your order</h1>
+    <p>Your order has been placed and is being processed. </p>
+    <p>You will receive an email with order details!!</p>
+    <a class="text-danger " href="{% url 'index' %}">Back to homepage</a>
 </div>
 {% include 'footer.html' %}
 

@@ -20,7 +20,7 @@
             {% csrf_token %}
 
             <form>
-                <div class="mb-3">
+                <div class="mb-3 tex">
                     <label for="exampleInputEmail1" class="form-label">Username</label>
                     <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
 
@@ -29,7 +29,8 @@
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password">
                 </div>
-                <input type="submit" value="Submit" class="btn btn-secondary">
+                <input type="submit" value="Submit" class="btn btn-secondary ">
+                <p>Don't have a Gigster account ? <a class="text-danger" href="{% url 'register_user' %}">Sign up</a></p>
             </form>
         </form>
 

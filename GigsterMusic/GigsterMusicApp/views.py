@@ -77,7 +77,7 @@ def addProduct(request, id=0):
             pis.product = product
             pis.user = request.user
             pis.save()
-        return redirect("/products")
+        return redirect("/cart")
 
 
 def login_user(request):
@@ -151,3 +151,73 @@ def orderInformations(request):
 
 def orderConfirm(request):
     return render(request, "orderConfirm.html")
+
+
+def deleteItem(request, id=0):
+    ProductInShippingCart.objects.filter(user=request.user).get(pk=id).delete()
+    context = {"pis": ProductInShippingCart.objects.filter(user=request.user).all(),
+               "recommended": Recommended.objects.all()}
+    return render(request, "cart.html", context=context)
+
+
+def editItem(request, id=0):
+    if request.method == "GET":
+        item = ProductInShippingCart.objects.filter(user=request.user).get(pk=id)
+        form = ProductItemForm(instance=item.product)
+        context = {"form": form, "product": item.product.product}
+        return render(request, "productItem.html", context=context)
+    else:
+        form_data = ProductItemForm(data=request.POST, files=request.FILES)
+        if form_data.is_valid():
+            ProductInShippingCart.objects.filter(user=request.user).get(pk=id).delete()
+            product = form_data.save(commit=False)
+            product.save()
+            pis = ProductInShippingCart()
+            pis.product = product
+            pis.user = request.user
+            pis.save()
+        return redirect("/cart")
+
+
+def profile(request):
+    usr = request.user
+    if request.method == "POST":
+        form_data = RegisterUserForm(request.POST, instance=usr)
+        if form_data.is_valid():
+            usr = form_data.save(commit=False)
+            usr.save()
+            username = form_data.cleaned_data['username']
+            password = form_data.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, ("Registration Successful!"))
+            return redirect('index')
+
+    else:
+        form = RegisterUserForm(instance=request.user)
+        context = {"form": form, }
+        return render(request, "profile.html", context=context)
+
+
+def editProduct(request, id=0):
+    product = Product.objects.get(pk=id)
+    if request.method == "GET":
+        product = Product.objects.get(pk=id)
+        form = ProductForm(instance=product)
+        context = {"form": form,}
+        return render(request, "addNewProduct.html", context=context)
+    else:
+        form_data = ProductForm(request.POST, instance=product)
+        if form_data.is_valid():
+            product = form_data.save(commit=False)
+            product.save()
+            context = {"products": Product.objects.all()}
+            return render(request, "products.html", context=context)
+    return render(request, "products.html")
+
+
+
+def deleteProduct(request, id=0):
+    Product.objects.get(pk=id).delete()
+    context = {"products": Product.objects.all()}
+    return render(request, "products.html", context=context)

@@ -16,32 +16,29 @@
 
 
     <div class="row mt-5 align-items-center">
-        <p>Home/Products</p>
-        <div class="col-4 m-3 bg-black" style="height: 5px"></div>
+        <div class="col-4 m-3 bg-black" style="height: 2px"></div>
         <div class="col text-center">
             <h1>ALL PRODUCTS</h1>
         </div>
-        <div class="col-4 m-3 bg-black" style="height: 5px"></div>
+        <div class="col-4 m-3 bg-black" style="height: 2px"></div>
     </div>
 
     <div>
         <div class="row m-auto ">
             {% for product in products%}
 
-            <div class="card m-3 " style="width: 18rem">
-                <img src="/data/{{product.product_Image}}" class="card-img-top" style="height: 450px">
+            <div class="col-3 text-center m-3" style="width:18rem; max-width: 18rem">
+                <img src="/data/{{product.product_Image}}" class="card-img-top" style="height: 450px;width: auto; max-width:18rem">
                 <div class="card-body">
                     <h5 class="card-title">{{product.product_name}}</h5>
                     <p class="card-text">{{product.product_price}}$</p>
                     <a href="{% url 'productDetails' product.id %}" class="btn btn-success">DETAILS</a>
+                    {% if user.is_superuser %}
+                        <a class="btn btn-secondary my-3" href="{% url 'editProduct' product.id %}">Edit</a>
+                        <a class="btn btn-danger my-3" href="{% url 'deleteProduct' product.id %}">Delete</a>
+                    {% endif %}
                 </div>
             </div>
-            {% if forloop.counter|divisibleby:4 and not forloop.last %}
-        </div>
-        <div class="row m-auto">
-            {% endif %}
-
-
             {% endfor %}
         </div>
     </div>
